@@ -4,11 +4,13 @@ use framework "WebKit"
 use scripting additions
 
 set theWindow to missing value
+set theWebView to missing value
 
 my performSelectorOnMainThread:"showWindow" withObject:(missing value) waitUntilDone:true
 
 on showWindow()
 	global theWindow
+	global theWebView
 	set theContentRect to current application's NSMakeRect(0, 0, 900, 600)
 	set theWindowStyle to (get current application's NSWindowStyleMaskTitled) + (get current application's NSWindowStyleMaskClosable) + (get current application's NSWindowStyleMaskMiniaturizable) + (get current application's NSWindowStyleMaskResizable)
 	set theWindow to current application's NSWindow's alloc()'s initWithContentRect:theContentRect styleMask:theWindowStyle backing:(current application's NSBackingStoreBuffered) defer:false
@@ -19,13 +21,13 @@ on showWindow()
 	theWindow's setTitlebarAppearsTransparent:true
 
 	set webViewFrame to current application's NSMakeRect(0, 0, 900, 600)
-	set webView to current application's WKWebView's alloc()'s initWithFrame:webViewFrame
+	set theWebView to current application's WKWebView's alloc()'s initWithFrame:webViewFrame
 
 	set targetURL to current application's NSURL's URLWithString:"${url}"
 	set urlRequest to current application's NSURLRequest's requestWithURL:targetURL
-	webView's loadRequest:urlRequest
+	theWebView's loadRequest:urlRequest
 
-	theWindow's contentView()'s addSubview:webView
+	theWindow's contentView()'s addSubview:theWebView
 
 	theWindow's setLevel:(current application's NSFloatingWindowLevel)
 
@@ -49,7 +51,15 @@ end windowDidBecomeKey:
 on windowDidResignKey:theNotification
 	global theWindow
 	theWindow's setLevel:(current application's NSFloatingWindowLevel)
-end windowDidResignKey:`;
+end windowDidResignKey:
+
+on windowDidResize:theNotification
+	global theWindow
+	global theWebView
+
+	set contentFrame to theWindow's contentView()'s frame()
+	theWebView's setFrame:contentFrame
+end windowDidResize:`;
 
 export const displayWindow = async (url: string) => {
   const timeout = 60000;
