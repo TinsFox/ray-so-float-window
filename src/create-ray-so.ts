@@ -1,10 +1,5 @@
 import { runAppleScript } from "@raycast/utils";
-
-export const displayWindow = async (url: string) => {
-  const timeout = 60000;
-
-  return await runAppleScript(
-    `use framework "Foundation"
+const script = (url: string) => `use framework "Foundation"
 use framework "WebKit"
 use scripting additions
 
@@ -61,7 +56,10 @@ end windowDidBecomeKey:
 on windowDidResignKey:theNotification
 	global theWindow
 	theWindow's setLevel:(current application's NSFloatingWindowLevel)
-end windowDidResignKey:`,
-    { timeout },
-  );
+end windowDidResignKey:`;
+
+export const displayWindow = async (url: string) => {
+  const timeout = 60000;
+
+  return await runAppleScript(script(url), [], { timeout });
 };
