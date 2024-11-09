@@ -19,6 +19,7 @@ on showWindow()
 	theWindow's setOpaque:false
 	theWindow's setMovableByWindowBackground:true
 	theWindow's setTitlebarAppearsTransparent:true
+	theWindow's setTitle:"ray.so"
 
 	set webViewFrame to current application's NSMakeRect(0, 0, 900, 600)
 	set theWebView to current application's WKWebView's alloc()'s initWithFrame:webViewFrame

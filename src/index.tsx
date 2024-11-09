@@ -1,6 +1,6 @@
 import { closeMainWindow, Action, ActionPanel, Form, getPreferenceValues, showToast, Toast } from "@raycast/api";
 import { useState } from "react";
-import { displayWindow } from "./create-ray-so";
+import { displayWindow } from "./create-float-window";
 
 interface Preferences {
   theme: string;

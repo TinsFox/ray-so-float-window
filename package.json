@@ -1,32 +1,179 @@
 {
-  "name": "ray-so-export",
-  "title": "Ray.so Export",
-  "description": "Export code snippets to ray.so",
-  "icon": "command-icon.png",
-  "author": "you",
-  "categories": [
-    "Developer Tools"
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "ray-so-float-window",
+  "title": "ray.so float window",
+  "description": "Create beautiful images of your code using ray.so",
+  "icon": "icon.png",
+  "author": "garrett",
+  "contributors": [
+    "RSO",
+    "vette",
+    "emlez",
+    "samuelkraft",
+    "benoit.grelard",
+    "sdorra"
   ],
   "license": "MIT",
   "commands": [
     {
-      "name": "index",
-      "title": "Create Ray.so Snippet",
-      "description": "Export code to ray.so",
+      "name": "create-a-snippet",
+      "title": "Create Image from Code",
+      "subtitle": "ray.so float window",
+      "description": "Use Ray.so to create beautiful images of your code in a floating window",
       "mode": "view"
+    },
+    {
+      "name": "generate-image",
+      "title": "Generate Image",
+      "subtitle": "ray.so float window",
+      "description": "Use Ray.so to create beautiful images of your code in a floating window",
+      "mode": "no-view",
+      "preferences": [
+        {
+          "name": "theme",
+          "title": "Theme",
+          "type": "dropdown",
+          "required": false,
+          "description": "Change the background color",
+          "default": "candy",
+          "data": [
+            {
+              "title": "Vercel",
+              "value": "vercel"
+            },
+            {
+              "title": "Evil Rabbit",
+              "value": "rabbit"
+            },
+            {
+              "title": "Supabase",
+              "value": "supabase"
+            },
+            {
+              "title": "Tailwind",
+              "value": "tailwind"
+            },
+            {
+              "title": "Bitmap",
+              "value": "bitmap"
+            },
+            {
+              "title": "Noir",
+              "value": "noir"
+            },
+            {
+              "title": "Ice",
+              "value": "ice"
+            },
+            {
+              "title": "Sand",
+              "value": "sand"
+            },
+            {
+              "title": "Forest",
+              "value": "forest"
+            },
+            {
+              "title": "Mono",
+              "value": "mono"
+            },
+            {
+              "title": "Breeze",
+              "value": "breeze"
+            },
+            {
+              "title": "Candy",
+              "value": "candy"
+            },
+            {
+              "title": "Crimson",
+              "value": "crimson"
+            },
+            {
+              "title": "Falcon",
+              "value": "falcon"
+            },
+            {
+              "title": "Meadow",
+              "value": "meadow"
+            },
+            {
+              "title": "Midnight",
+              "value": "midnight"
+            },
+            {
+              "title": "Raindrop",
+              "value": "raindrop"
+            },
+            {
+              "title": "Sunset",
+              "value": "sunset"
+            }
+          ]
+        },
+        {
+          "name": "padding",
+          "title": "Padding",
+          "type": "dropdown",
+          "required": false,
+          "description": "Set the padding around the code",
+          "default": "64",
+          "data": [
+            {
+              "title": "16",
+              "value": "16"
+            },
+            {
+              "title": "32",
+              "value": "32"
+            },
+            {
+              "title": "64",
+              "value": "64"
+            },
+            {
+              "title": "128",
+              "value": "128"
+            }
+          ]
+        },
+        {
+          "name": "darkMode",
+          "title": "Dark Mode",
+          "type": "checkbox",
+          "description": "Set the theme to light or dark mode",
+          "required": false,
+          "default": true,
+          "label": "Enabled"
+        },
+        {
+          "name": "background",
+          "title": "Background",
+          "type": "checkbox",
+          "description": "Select whether you want a gradient background or not",
+          "required": false,
+          "default": true,
+          "label": "Enabled"
+        }
+      ]
     }
   ],
   "dependencies": {
-    "@raycast/api": "^1.64.4",
-    "@raycast/utils": "^1.12.5"
+    "@raycast/api": "^1.85.1",
+    "@raycast/utils": "^1.18.0",
+    "js-base64": "^3.7.7",
+    "prettier": "^3.3.3",
+    "run-applescript": "^7.0.0",
+    "url-safe-base64": "^1.3.0"
   },
   "devDependencies": {
-    "@raycast/eslint-config": "^1.0.6",
-    "@types/node": "^20.8.10",
-    "@types/react": "^18.2.27",
-    "eslint": "^8.51.0",
-    "prettier": "^3.0.3",
-    "typescript": "^5.2.2"
+    "@raycast/eslint-config": "^1.0.11",
+    "@types/node": "^20.17.6",
+    "@types/react": "^18.3.12",
+    "eslint": "^7.32.0",
+    "react": "^18.3.1",
+    "react-devtools": "^4.28.5",
+    "typescript": "^4.9.5"
   },
   "scripts": {
     "build": "ray build -e dist",
